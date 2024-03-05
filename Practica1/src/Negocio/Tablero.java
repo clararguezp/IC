@@ -3,7 +3,8 @@ package Negocio;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tablero {
+
+public class Tablero{
 
 	private int N;
 	private int M;
@@ -62,6 +63,9 @@ public class Tablero {
 		tablero[i][j].setTipo(tipo);
 	}
 	
+	public String getTipo(int x, int y) {
+		return tablero[x][y].getTipo();
+	}
 	public Nodo getMeta() {
 		return meta;
 	}
