@@ -14,9 +14,9 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 
-import Negocio.Controller;
+import Negocio.Controlador;
 
-public class Dialogo extends JDialog{
+public class DimensionesTableroView extends JDialog{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -26,15 +26,15 @@ public class Dialogo extends JDialog{
 	private JLabel aux;
 	private JLabel description;
 	
-	private Controller ctrl;
+	private Controlador ctrl;
 	public static boolean done = false;
 	
-	public Dialogo() {
+	public DimensionesTableroView() {
 		initGUI();
 	}
 	
+	// Funcion para iniciar el dialogo
 	public void initGUI() {
-		
 		JPanel mainPanel = new JPanel();
 		description = new JLabel();
 		nFilas = new JSpinner();
@@ -42,10 +42,10 @@ public class Dialogo extends JDialog{
 		confirmar = new JButton();
 		aux = new JLabel();
 		
-		nFilas.setModel(new SpinnerNumberModel(3, 3, 20, 1));
+		nFilas.setModel(new SpinnerNumberModel(5, 1, 20, 1));
 		nFilas.setPreferredSize(new Dimension(50, 20));
 		
-		nColumnas.setModel(new SpinnerNumberModel(3, 3, 20, 1));
+		nColumnas.setModel(new SpinnerNumberModel(5, 1, 20, 1));
 		nColumnas.setPreferredSize(new Dimension(50, 20));
 		
 		aux.setText(" X ");
@@ -61,7 +61,7 @@ public class Dialogo extends JDialog{
 				int nf = (Integer) nFilas.getValue();
 				int nc = (Integer) nColumnas.getValue(); 
 				
-				ctrl = new Controller(nf, nc);
+				ctrl = new Controlador(nf, nc);
 				ctrl.setInstance();
 				done = true;
 				dispose();

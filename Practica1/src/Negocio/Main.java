@@ -2,7 +2,7 @@ package Negocio;
 
 import java.awt.EventQueue;
 
-import Presentacion.Principal;
+import Presentacion.PrincipalView;
 
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal frame = new Principal();
+					PrincipalView frame = new PrincipalView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

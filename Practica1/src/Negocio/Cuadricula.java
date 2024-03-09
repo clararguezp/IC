@@ -3,30 +3,29 @@ package Negocio;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Tablero{
-
+public class Cuadricula {
+	
 	private int N;
 	private int M;
-	private Nodo tablero[][];
+	private Nodo cuadricula[][];
 	private Nodo meta;
 	private Nodo salida;
 	private List<Nodo> waypoints;
 	
-	public Tablero(int N, int M) {
+	public Cuadricula(int N, int M) {
 		this.N = N;
 		this.M = M;
 		
 		waypoints = new ArrayList<>();
-		crearTablero(this.N, this.M);
+		crearCuadricula(this.N, this.M);
 	}
 	
-	private void crearTablero(int N, int M) {
-		tablero = new Nodo[N][M];
+	private void crearCuadricula(int N, int M) {
+		cuadricula = new Nodo[N][M];
 		
 		for(int i = 0; i < N; i++) {
 			for(int j = 0; j < M; j++) {
-				tablero[i][j] = new Nodo(i, j, "vacio");
+				cuadricula[i][j] = new Nodo(i, j, TiposNodos.VACIO);
 			}
 		}
 	}
@@ -47,31 +46,31 @@ public class Tablero{
 		M = m;
 	}
 	
-	public Nodo[][] getTablero() {
-		return tablero;
+	public Nodo[][] getCuadricula() {
+		return cuadricula;
 	}
 	
-	public void setTablero(Nodo[][] tablero) {
-		this.tablero = tablero;
+	public void setCuadricula(Nodo[][] tablero) {
+		this.cuadricula = tablero;
 	}
 	
-	public Nodo getNodoTablero(int i, int j) {
-		return tablero[i][j];
+	public Nodo getNodoCuadricula(int i, int j) {
+		return cuadricula[i][j];
 	}
 	
-	public void setNodoTablero(int i, int j, String tipo) {
-		tablero[i][j].setTipo(tipo);
+	public void setNodoCuadricula(int i, int j, TiposNodos tipo) {
+		cuadricula[i][j].setTipo(tipo);
 	}
 	
-	public String getTipo(int x, int y) {
-		return tablero[x][y].getTipo();
+	public TiposNodos getTipo(int x, int y) {
+		return cuadricula[x][y].getTipo();
 	}
 	public Nodo getMeta() {
 		return meta;
 	}
 	
 	public void setMeta(int i, int j) {
-		meta = new Nodo(i, j, "meta");
+		meta = new Nodo(i, j, TiposNodos.META);
 	}
 	
 	public Nodo getSalida() {
@@ -79,7 +78,7 @@ public class Tablero{
 	}
 	
 	public void setSalida(int i, int j) {
-		salida = new Nodo(i, j, "salida");
+		salida = new Nodo(i, j, TiposNodos.SALIDA);
 	}
 	
 	public List<Nodo> getWaypoints() {
@@ -87,7 +86,7 @@ public class Tablero{
 	}
 	
 	public void setWaypoints(int i, int j) {
-		waypoints.add(tablero[i][j]);
+		waypoints.add(cuadricula[i][j]);
 	}
 	
 	@SuppressWarnings("null")
@@ -96,8 +95,8 @@ public class Tablero{
 		
 		for(int i = 0; i < N; i++) {
 			for(int j = 0; j < M;j++) {
-				if(tablero[i][j].getTipo() == "prohibido") {
-					nodosProhibidos.add(tablero[i][j]);
+				if(cuadricula[i][j].getTipo() == TiposNodos.PROHIBIDO) {
+					nodosProhibidos.add(cuadricula[i][j]);
 				}
 			}
 		}

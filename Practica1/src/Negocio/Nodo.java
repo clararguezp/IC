@@ -2,7 +2,7 @@ package Negocio;
 
 public class Nodo {
 	
-	private String tipo;
+	private TiposNodos tipo;
 	private int x;
 	private int y;
 	private double f;
@@ -10,17 +10,17 @@ public class Nodo {
 	private double h;
 	private Nodo anterior;
 	
-	public Nodo(int x, int y, String tipo) {
+	public Nodo(int x, int y, TiposNodos tipo) {
 		this.x = x;
 		this.y = y;
 		this.tipo = tipo;
 	}
 
-	public String getTipo() {
+	public TiposNodos getTipo() {
 		return tipo;
 	}
 	
-	public void setTipo(String tipo) {
+	public void setTipo(TiposNodos tipo) {
 		this.tipo = tipo;
 	}
 	
