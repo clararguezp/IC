@@ -31,8 +31,8 @@ public class PrincipalView extends JFrame{
 	}
 	
 	public void initGUI() {
-		DimensionesTableroView dimensiones = new DimensionesTableroView();
-		while(!DimensionesTableroView.done) {}
+		DimensionesCuadriculaView dimensiones = new DimensionesCuadriculaView();
+		while(!DimensionesCuadriculaView.done) {}
 		
 		cuadriculaPanel = new CuadriculaView();
 		configuracionPanel = new ConfiguracionView();

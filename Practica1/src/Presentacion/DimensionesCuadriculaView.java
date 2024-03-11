@@ -16,45 +16,49 @@ import javax.swing.SpinnerNumberModel;
 
 import Negocio.Controlador;
 
-public class DimensionesTableroView extends JDialog{
+public class DimensionesCuadriculaView extends JDialog{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private JSpinner nFilas;
 	private JSpinner nColumnas;
-	private JButton confirmar;
-	private JLabel aux;
-	private JLabel description;
+	private JButton aceptar;
+	private JLabel filasLabel;
+	private JLabel columnasLabel;
+	private JLabel mensajeLabel;
 	
 	private Controlador ctrl;
 	public static boolean done = false;
 	
-	public DimensionesTableroView() {
+	public DimensionesCuadriculaView() {
 		initGUI();
 	}
 	
 	// Funcion para iniciar el dialogo
 	public void initGUI() {
 		JPanel mainPanel = new JPanel();
-		description = new JLabel();
-		nFilas = new JSpinner();
-		nColumnas = new JSpinner();
-		confirmar = new JButton();
-		aux = new JLabel();
 		
+		mensajeLabel = new JLabel();
+		mensajeLabel.setText("Seleccione las dimensiones de la cuadrícula");
+		mensajeLabel.setAlignmentX(CENTER_ALIGNMENT);
+		
+		filasLabel = new JLabel();	
+		filasLabel.setText("FILAS: ");
+		
+		nFilas = new JSpinner();
 		nFilas.setModel(new SpinnerNumberModel(5, 1, 20, 1));
 		nFilas.setPreferredSize(new Dimension(50, 20));
 		
+		columnasLabel = new JLabel();
+		columnasLabel.setText("COLUMNAS: ");
+		
+		nColumnas = new JSpinner();
 		nColumnas.setModel(new SpinnerNumberModel(5, 1, 20, 1));
 		nColumnas.setPreferredSize(new Dimension(50, 20));
 		
-		aux.setText(" X ");
-		
-		description.setText("Seleccione las dimensiones del tablero: ");
-		description.setAlignmentX(CENTER_ALIGNMENT);
-		
-		confirmar.setText("CONFIRMAR");
-		confirmar.addActionListener(new ActionListener() {
+		aceptar = new JButton();
+		aceptar.setText("ACEPTAR");
+		aceptar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -68,28 +72,28 @@ public class DimensionesTableroView extends JDialog{
 			}
 		});
 		
-		setTitle("Dimensiones");
+		setTitle("Dimensiones de la cuadrícula");
 		
 		JPanel espacio = new JPanel();
 		espacio.setSize(300, 50);
 		
-		JPanel p1 = new JPanel();
-		p1.add(nFilas);
-		p1.add(aux);
-		p1.add(nColumnas);
-		add(p1);
+		JPanel panelSpinners = new JPanel();
+		panelSpinners.add(filasLabel);
+		panelSpinners.add(nFilas);
+		panelSpinners.add(columnasLabel);
+		panelSpinners.add(nColumnas);
 		
-		JPanel p2 = new JPanel();
-		p2.add(confirmar);
-		add(p2);
+		JPanel panelBoton = new JPanel();
+		panelBoton.add(aceptar);
 		
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
 		setContentPane(mainPanel);
+		
 		mainPanel.add(espacio);
-		mainPanel.add(description);
-		mainPanel.add(p1);
-		mainPanel.add(p2);
+		mainPanel.add(mensajeLabel);
+		mainPanel.add(panelSpinners);
+		mainPanel.add(panelBoton);
 		
 		setPreferredSize(new Dimension(300, 200));
 		setResizable(false);
