@@ -130,7 +130,7 @@ public class ConfiguracionView extends JPanel{
 			}
 		});
 		
-		reiniciar = new JButton("Reiniciar tablero");
+		reiniciar = new JButton("Reiniciar cuadrícula");
 		reiniciar.addActionListener(new ActionListener() {
 
 			@Override

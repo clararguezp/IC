@@ -141,6 +141,7 @@ public class AEstrella {
 		
 		if(inalcanzableMeta) {
 			System.out.println("META NO ALCANZABLE");
+			sol = null;
 		}
 		
 		return sol;
