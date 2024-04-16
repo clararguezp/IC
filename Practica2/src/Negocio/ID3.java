@@ -158,12 +158,6 @@ public class ID3 {
 		int indice = 0;
 		double min = 1;
 		
-		for(int i = 0; i < ejemplos.size(); i++) {
-			for(int j = 0; j < ejemplos.get(i).getValores().size(); j++) {
-				System.out.println(ejemplos.get(i).getValores().get(j));
-			}
-		}
-		
 		for (int i = 0; i < atributos.size()-1; i++){
 			if(atributos.get(i).getValoresPosibles() == null) {
 				calcularPosiblesValores(atributos.get(i));

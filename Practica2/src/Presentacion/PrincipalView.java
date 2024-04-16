@@ -24,26 +24,28 @@ import Negocio.Nodo;
 public class PrincipalView extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
-	private ID3 ID3Alg;
-	private SolutionView solution;
+	
+	private JPanel principalPanel;
+	private JPanel configuracionPanel;
+	
+	private JButton cargarAtributosButton;
+	private JButton cargarEjemplosButton;
+	private JButton calcularSolucionButton;
+	
+	private ID3 algoritmoID3;
+	private SolucionView solucionPanel;
 	
 	public PrincipalView(){
 	    initGUI();
 	}
 	
-	public void initGUI() {		
-		JPanel mainPanel = new JPanel(new BorderLayout());
-		JPanel buttonsPanel = new JPanel(new BorderLayout());
-		JPanel solPanel = new JPanel(new BorderLayout());
+	public void initGUI() {
+		configuracionPanel = new JPanel();
+		algoritmoID3 = new ID3();
 		
-		JButton cargarAtributos = new JButton("Cargar Atributos");
-		JButton cargarEjemplos = new JButton("Cargar Ejemplos");
-		JButton CalcularButton = new JButton("Calcular");
-		
-		ID3Alg = new ID3();
-		
-		cargarAtributos.addActionListener(new ActionListener() {
-			
+		cargarAtributosButton = new JButton("Cargar Atributos");
+		cargarAtributosButton.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser filechooser = new JFileChooser();
@@ -54,62 +56,67 @@ public class PrincipalView extends JFrame{
 					try {
 						File fichero = filechooser.getSelectedFile();
 						ArrayList<String> atributos = LecturaFicheros.leerAtributos(fichero);
-						ID3Alg.setAtributos(atributos);
+						algoritmoID3.setAtributos(atributos);
 						
 					}catch(Exception ex) {
-						JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LOS ATRIBUTOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "ERROR: No se han podido cargar los atributos del juego", "ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
-		});
-		
-		cargarEjemplos.addActionListener(new ActionListener() {
 			
+		});
+
+		cargarEjemplosButton = new JButton("Cargar Ejemplos");
+		cargarEjemplosButton.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser();
-				fc.setCurrentDirectory(new File(new File("./resources/examples/").getAbsolutePath()));
+				JFileChooser filechooser = new JFileChooser();
+				filechooser.setCurrentDirectory(new File(new File("./resources/examples/").getAbsolutePath()));
 				
-				int op = fc.showOpenDialog(fc);
-				if(op == fc.APPROVE_OPTION) {
+				int option = filechooser.showOpenDialog(filechooser);
+				if(option == filechooser.APPROVE_OPTION) {
 					try {
-						File fichero = fc.getSelectedFile();
+						File fichero = filechooser.getSelectedFile();
 						ArrayList<ArrayList<String>> ejemplos = LecturaFicheros.leerJuego(fichero);
-						ID3Alg.setEjemplos(ejemplos);
+						algoritmoID3.setEjemplos(ejemplos);
 						
 					}catch(Exception ex) {
-						JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LOS EJEMPLOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "ERROR: No se ha podido cargar el juego", "ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
-		});
-		
-		CalcularButton.addActionListener(new ActionListener() {
 			
+		});
+
+		calcularSolucionButton = new JButton("Calcular Solución");
+		calcularSolucionButton.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Nodo solucion;
-				ID3Alg.setValoresPosibles();
-				solucion = ID3Alg.algoritmoID3(ID3Alg.getAtributos(), ID3Alg.getEjemplos());
-				solution = new SolutionView(solucion);
-				solPanel.add(solution);
+				algoritmoID3.setValoresPosibles();
+				solucion = algoritmoID3.algoritmoID3(algoritmoID3.getAtributos(), algoritmoID3.getEjemplos());
+				solucionPanel = new SolucionView(solucion);
+				principalPanel.add(solucionPanel, BorderLayout.CENTER);
 			}
+			
 		});
+
+		configuracionPanel.add(cargarAtributosButton);
+		configuracionPanel.add(cargarEjemplosButton);
+		configuracionPanel.add(calcularSolucionButton);
 		
-		buttonsPanel.add(cargarAtributos);
-		buttonsPanel.add(cargarEjemplos);
-		buttonsPanel.add(CalcularButton);
+		principalPanel = new JPanel(new BorderLayout());
+		principalPanel.add(configuracionPanel, BorderLayout.NORTH);
 		
-		mainPanel.add(buttonsPanel,BorderLayout.NORTH);
-		mainPanel.add(solPanel,BorderLayout.CENTER);
-		
-		setTitle("ID3");
+		setTitle("Algoritmo ID3");
 		setResizable(false);
 		setMinimumSize(new Dimension(900,800));
 		setLocationRelativeTo(null);
-		add(mainPanel);
+		
+		add(principalPanel);
 		setVisible(true);
 		pack();
 	}
-
 }
