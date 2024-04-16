@@ -1,6 +1,5 @@
 package Presentacion;
 
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import com.mxgraph.swing.mxGraphComponent;
@@ -9,7 +8,7 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import Negocio.Nodo;
 
-public class SolucionView extends JFrame {
+public class SolucionView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Nodo root;
 
@@ -21,9 +20,7 @@ public class SolucionView extends JFrame {
     public void initGUI() {
     	setLayout(new BorderLayout());
         add(buildTreePanel(), BorderLayout.CENTER);
-        setLocationRelativeTo(null);
 		setVisible(true);
-		pack();
     }
 
     private JPanel buildTreePanel() {

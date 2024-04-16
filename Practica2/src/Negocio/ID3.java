@@ -75,7 +75,7 @@ public class ID3 {
 		boolean igual = true;
 		int i = 1;
 		
-		while(i < ejemplos.size() || igual) {
+		while(i < ejemplos.size() && igual) {
 			if(!ejemplos.get(i).getClase().equals(clase)) {
 				igual = false;
 			}
