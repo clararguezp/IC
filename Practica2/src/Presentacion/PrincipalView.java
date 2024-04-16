@@ -31,8 +31,7 @@ public class PrincipalView extends JFrame{
 	    initGUI();
 	}
 	
-	public void initGUI() {
-		
+	public void initGUI() {		
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		JPanel buttonsPanel = new JPanel(new BorderLayout());
 		JPanel solPanel = new JPanel(new BorderLayout());
@@ -75,7 +74,7 @@ public class PrincipalView extends JFrame{
 				if(op == fc.APPROVE_OPTION) {
 					try {
 						File fichero = fc.getSelectedFile();
-						ArrayList<String> ejemplos = LecturaFicheros.leerJuego(fichero);
+						ArrayList<ArrayList<String>> ejemplos = LecturaFicheros.leerJuego(fichero);
 						ID3Alg.setEjemplos(ejemplos);
 						
 					}catch(Exception ex) {

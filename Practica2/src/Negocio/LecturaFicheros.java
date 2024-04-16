@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class LecturaFicheros {
 	
@@ -20,23 +22,28 @@ public class LecturaFicheros {
 				atributos.add(palabra.trim());
 			}
 			
+			buffer.close();
+			reader.close();
+			
 			return atributos;
 		}
 	}
 	
-	public static ArrayList<String> leerJuego(File fichero) throws IOException {
+	public static ArrayList<ArrayList<String>> leerJuego(File fichero) throws IOException {
 		FileReader reader = new FileReader(fichero);
 		try (BufferedReader buffer = new BufferedReader(reader)) {
-			ArrayList<String> juego = new ArrayList<String>();
+			ArrayList<ArrayList<String>> juego = new ArrayList<ArrayList<String>>();
 			
 			String linea;
 			while((linea = buffer.readLine()) != null) {
-				String[] aux = linea.split(",");
-				
-				for (String palabra : aux) {
-					juego.add(palabra.trim());
-				}
+				String[] auxArray = linea.split(",");
+				List<String> auxList = Arrays.asList(auxArray);
+				ArrayList<String> elemento = new ArrayList<String>(auxList);
+				juego.add(elemento);
 			}
+			
+			buffer.close();
+			reader.close();
 			
 			return juego;
 		}
