@@ -1,6 +1,8 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
@@ -19,6 +21,7 @@ public class SolucionView extends JPanel {
     
     public void initGUI() {
     	setLayout(new BorderLayout());
+    	setMinimumSize(new Dimension(600,500));
         add(buildTreePanel(), BorderLayout.CENTER);
 		setVisible(true);
     }

@@ -57,6 +57,7 @@ public class PrincipalView extends JFrame{
 						File fichero = filechooser.getSelectedFile();
 						ArrayList<String> atributos = LecturaFicheros.leerAtributos(fichero);
 						algoritmoID3.setAtributos(atributos);
+						cargarAtributosButton.setEnabled(false);
 						
 					}catch(Exception ex) {
 						JOptionPane.showMessageDialog(null, "ERROR: No se han podido cargar los atributos del juego", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -80,6 +81,7 @@ public class PrincipalView extends JFrame{
 						File fichero = filechooser.getSelectedFile();
 						ArrayList<ArrayList<String>> ejemplos = LecturaFicheros.leerJuego(fichero);
 						algoritmoID3.setEjemplos(ejemplos);
+						cargarEjemplosButton.setEnabled(false);
 						
 					}catch(Exception ex) {
 						JOptionPane.showMessageDialog(null, "ERROR: No se ha podido cargar el juego", "ERROR", JOptionPane.ERROR_MESSAGE);
